@@ -1,13 +1,13 @@
 CREATE TABLE Finalbooks 
 (
     BookID int NOT NULL auto_increment primary key,
-    Author	VARCHAR(512),
-    Region	VARCHAR(512),
-    Title	VARCHAR(512),
-    Pages	INT,
-    Published	INT,
-    OriginalYear	INT,
-    Genre	VARCHAR(512)
+    Author	VARCHAR(512) NOT NULL,
+    Region	VARCHAR(512) NOT NULL,
+    Title	VARCHAR(512) NOT NULL,
+    Pages	INT NOT NULL,
+    Published	INT NOT NULL,
+    OriginalYear	INT NOT NULL,
+    Genre	VARCHAR(512) NOT NULL
 );
 
 
