@@ -1,5 +1,6 @@
 CREATE TABLE Finalbooks 
 (
+    BookID int NOT NULL auto_increment primary key,
     Author	VARCHAR(512),
     Region	VARCHAR(512),
     Title	VARCHAR(512),
@@ -8,6 +9,7 @@ CREATE TABLE Finalbooks
     OriginalYear	INT,
     Genre	VARCHAR(512)
 );
+
 
 INSERT INTO Finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('David Howarth', 'Europe', 'The Sledge Patrol', '240', '2018', '2018', 'History');
 INSERT INTO Finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Kelly Lytle Hernandez', 'South America', 'Bad Mexicans', '384', '2022', '2022', 'History');
