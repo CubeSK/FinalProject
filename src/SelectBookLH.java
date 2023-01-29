@@ -2,6 +2,9 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class SelectBookLH {
+    private static final String ANSI_RED = "\\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
+
     public static void main(String[] args) {
 
     }
@@ -31,7 +34,9 @@ public class SelectBookLH {
         } else if (choice == 6) {
             genrefilter = "History" + "Romance" + "Parenting" + "Politics" + "Hobbies";
         } else {
-            System.out.println("Please enter number from 1 to 6");
+            System.out.println(ANSI_RED
+                    + "Please enter number from 1 to 6"
+                    + ANSI_RESET);
         }
     }
 
@@ -56,6 +61,10 @@ public class SelectBookLH {
             regionfilter = "South America";
         } else if (choice == 5) {
             regionfilter = "Europe" + "Asia" + "North America" + "South America";
+        } else {
+            System.out.println(ANSI_RED
+                    + "Please enter number from 1 to 5!"
+                    + ANSI_RESET);
         }
     }
 
@@ -67,12 +76,19 @@ public class SelectBookLH {
                 "\n 1 less than 200 " +
                 "\n 2 more than 200 " +
                 "\n 3 Not important");
-        int choise = scanner.nextInt();
+        int choice = scanner.nextInt();
         int pagefilter;
-        if (choise ==1){
+        if (choice ==1){
+            pagefilter < 200;
+        } else if (choice == 2) {
             pagefilter > 200;
-        }
-    }
+        } else if (choice == 3){
+            pagefilter //= any value
+        } else {
+            System.out.println(ANSI_RED
+                    + "Please enter number from 1 to 3!"
+                    + ANSI_RESET);
+
 
     public void selectyearfilter (Connection conn) throws SQLException {
         Scanner scanner = new Scanner(System.in);
@@ -82,6 +98,20 @@ public class SelectBookLH {
                 "\n 2 2001-2010 " +
                 "\n 3 2011-2023" +
                 "\n 4 Not important");
+        int choice = scanner.nextInt();
+        int publishyear;
+        if (choice == 1){
+            publishyear // = 1980-2000;
+        }else if (choice == 2){
+            publishyear // = 2001-2010;
+        }else if (choice == 3){
+            publishyear // =2011-2023;
+        } else if (choice == 4) {
+            publishyear // = any value
+        } else {
+            System.out.println(ANSI_RED
+                    + "Please enter number from 1 to 4!"
+                    + ANSI_RESET);
     }
 
     public void selectoriginalyear (Connection conn) throws SQLException {
@@ -93,11 +123,26 @@ public class SelectBookLH {
                 "\n 3 20th century" +
                 "\n 4 21st century" +
                 "\n 5 Not important");
+        int choice = scanner.nextInt();
+        int origyearfilter;
+        if (choise == 1){
+            origyearfilter // = 1700-1799;
+        } else if (choice == 2) {
+            origyearfilter // = 1800=1899;
+        } else if (choice == 3){
+            origyearfilter //= 1900-1999;
+        } else if (choice == 4) {
+            regionfilter // = 2000-2023;
+        } else if (choice == 5) {
+            regionfilter //= any value;
+        } else {
+            System.out.println(ANSI_RED
+                    + "Please enter number from 1 to 5!"
+                    + ANSI_RESET);
     }
 */
     public void printchoices(Connection conn) throws SQLException {
         String sql = "SELECT * FROM finalbooks WHERE Genre = ? AND Region = ?";
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/finalproject", "root", "Ebelmuiza1");
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
 
@@ -115,7 +160,8 @@ public class SelectBookLH {
             System.out.println(String.format(output, BookID, Author, Region, Title, Pages, Published, OriginalYear));
         }
     }
-}
+    }
+
 
 
 
