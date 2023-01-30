@@ -15,7 +15,7 @@ public class AddBookClassSK {
     public static void main(String[] args) {
         String dbURL = "jdbc:mysql://localhost:3306/java34";
         String user = "root";
-        String password = "passw";
+        String password = "vilmas12";
         Scanner scanner = new Scanner(System.in);
 
 
