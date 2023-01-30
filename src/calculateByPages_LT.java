@@ -1,5 +1,8 @@
 import java.sql.*;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 public class calculateByPages_LT {
 
@@ -16,8 +19,9 @@ public class calculateByPages_LT {
             // Establish a connection to the database
             String url = "jdbc:mysql://localhost:3306/java34";
             String username = "root";
-            String password = "Jautajumsnr6663";
+            String password = "";
             try (Connection con = DriverManager.getConnection(url, username, password)) {
+
 
                 // Create a prepared statement
                 String query = "SELECT * FROM Finalbooks WHERE Pages = ?";
