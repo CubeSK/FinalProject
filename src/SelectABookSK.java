@@ -1,6 +1,8 @@
 import java.sql.*;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SelectABookSK {
@@ -10,7 +12,6 @@ public class SelectABookSK {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_GREEN = "\u001B[32m";
-
 
 
         //public static void selectgenrefilter(Connection conn) throws SQLException {
@@ -74,101 +75,110 @@ public class SelectABookSK {
 
 
         System.out.println("How many pages a day do you want to read?");
-        int pagesWant = scanner.nextInt();
+        String pagesWant = scanner.nextLine();
 
         System.out.println("Max number of days you would like to finish reading a book?");
-        int maxNumber = scanner.nextInt();
+        String maxNumber = scanner.nextLine();
 
-        int pagesToSearch = maxNumber * pagesWant;
+        Pattern pattern = Pattern.compile("[0-9]{2}");
+        Matcher matcher = pattern.matcher(pagesWant);
+        Matcher matcher1 = pattern.matcher(maxNumber);
 
+        boolean validPageNumber = (matcher.matches() && matcher1.matches());
 
-
-
-        //public void selectyearfilter (Connection conn) throws SQLException {
-        System.out.println("When should the book be published? Please choose from the following: " +
-                "\n 1 Before 1980" +
-                "\n 2 1980-2000 " +
-                "\n 3 2001-2010 " +
-                "\n 4 2011-2023" +
-                "\n 5 Not important");
-        Scanner scanner2 = new Scanner(System.in);
-        int choice3 = scanner.nextInt();
-        int yearmin = 0, yearmax = 0;
-        while (choice3 < 1 || choice3 > 6) {
-            System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
-            choice3 = scanner2.nextInt();
+        if (!validPageNumber) {
+            System.out.println("Please enter only positive double digits numbers!");
+        } else {
+            int pagesToSearch = Integer.parseInt(maxNumber) * Integer.parseInt(pagesWant);
         }
-        if (choice3 == 2) {
-            yearmin = 1980;
-            yearmax = 2000;
-        }else if (choice3 == 1) {
-            yearmin = 1400;
-            yearmax = 1979;
-        }else if (choice3 == 3){
-            yearmin = 2001;
-            yearmax = 2010;
-        }else if (choice3 == 4){
-            yearmin = 2011;
-            yearmax = 2023;
-        }else if (choice3 == 5) {
-            yearmin = 1400;
-            yearmax = 2023;
-        }
-        //public void selectoriginalyear (Connection conn) throws SQLException {
 
 
-        System.out.println("When should the book be written (originally published)? Please choose from the following: " +
-                "\n 1 Up to 18th century" +
-                "\n 2 18th century " +
-                "\n 3 19th century " +
-                "\n 4 20th century" +
-                "\n 5 21st century" +
-                "\n 6 Not important");
-        Scanner scanner3 = new Scanner(System.in);
-        int origyearmin = 0, origyearmax = 0;
-        int choice4 = scanner.nextInt();
+
+            //public void selectyearfilter (Connection conn) throws SQLException {
+            System.out.println("When should the book be published? Please choose from the following: " +
+                    "\n 1 Before 1980" +
+                    "\n 2 1980-2000 " +
+                    "\n 3 2001-2010 " +
+                    "\n 4 2011-2023" +
+                    "\n 5 Not important");
+            Scanner scanner2 = new Scanner(System.in);
+            int choice3 = scanner.nextInt();
+            int yearmin = 0, yearmax = 0;
+            while (choice3 < 1 || choice3 > 6) {
+                System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
+                choice3 = scanner2.nextInt();
+            }
+            if (choice3 == 2) {
+                yearmin = 1980;
+                yearmax = 2000;
+            } else if (choice3 == 1) {
+                yearmin = 1400;
+                yearmax = 1979;
+            } else if (choice3 == 3) {
+                yearmin = 2001;
+                yearmax = 2010;
+            } else if (choice3 == 4) {
+                yearmin = 2011;
+                yearmax = 2023;
+            } else if (choice3 == 5) {
+                yearmin = 1400;
+                yearmax = 2023;
+            }
+            //public void selectoriginalyear (Connection conn) throws SQLException {
+
+
+            System.out.println("When should the book be written (originally published)? Please choose from the following: " +
+                    "\n 1 Up to 18th century" +
+                    "\n 2 18th century " +
+                    "\n 3 19th century " +
+                    "\n 4 20th century" +
+                    "\n 5 21st century" +
+                    "\n 6 Not important");
+            Scanner scanner3 = new Scanner(System.in);
+            int origyearmin = 0, origyearmax = 0;
+            int choice4 = scanner.nextInt();
         /*while (choice4 < 1 || choice4 > 6) {
             choice4 = scanner.nextInt();
             if (choice4 < 1 || choice4 > 6) {
                 System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
             }
         }*/
-        while (choice4 < 1 || choice4 > 6) {
-            System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
-            choice4 = scanner3.nextInt();
-        }
-        if (choice4 == 2) {
-            origyearmin = 1700;
-            origyearmax = 1799;
-        } else if (choice4 == 1)   {
-            origyearmin = 0;
-            origyearmax = 1699;
-        } else if (choice4 == 3) {
-            origyearmin = 1800;
-            origyearmax = 1899;
-        } else if (choice4 == 4){
-            origyearmin = 1900;
-            origyearmax = 1999;
-        } else if (choice4 == 5) {
-            origyearmin = 2000;
-            origyearmax = 2023;
-        } else if (choice4 == 6) {
-            origyearmin = 1700;
-            origyearmax = 2023;
-        }
+            while (choice4 < 1 || choice4 > 6) {
+                System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
+                choice4 = scanner3.nextInt();
+            }
+            if (choice4 == 2) {
+                origyearmin = 1700;
+                origyearmax = 1799;
+            } else if (choice4 == 1) {
+                origyearmin = 0;
+                origyearmax = 1699;
+            } else if (choice4 == 3) {
+                origyearmin = 1800;
+                origyearmax = 1899;
+            } else if (choice4 == 4) {
+                origyearmin = 1900;
+                origyearmax = 1999;
+            } else if (choice4 == 5) {
+                origyearmin = 2000;
+                origyearmax = 2023;
+            } else if (choice4 == 6) {
+                origyearmin = 1700;
+                origyearmax = 2023;
+            }
 
-        try {
-            String sql = "SELECT * FROM finalbooks WHERE Genre = ? AND Region = ? AND Published BETWEEN ? AND ? AND OriginalYear BETWEEN ? AND ? AND PAGES BETWEEN 0 and ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, genrefilter);
-            preparedStatement.setString(2, regionfilter);
-            preparedStatement.setInt(3, yearmin);
-            preparedStatement.setInt(4, yearmax);
-            preparedStatement.setInt(5, origyearmin);
-            preparedStatement.setInt(6, origyearmax);
-            preparedStatement.setInt(7, pagesToSearch);
+            try {
+                String sql = "SELECT * FROM finalbooks WHERE Genre = ? AND Region = ? AND Published BETWEEN ? AND ? AND OriginalYear BETWEEN ? AND ? AND PAGES BETWEEN 0 and ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, genrefilter);
+                preparedStatement.setString(2, regionfilter);
+                preparedStatement.setInt(3, yearmin);
+                preparedStatement.setInt(4, yearmax);
+                preparedStatement.setInt(5, origyearmin);
+                preparedStatement.setInt(6, origyearmax);
+                preparedStatement.setInt(7, pagesToSearch);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+                ResultSet resultSet = preparedStatement.executeQuery();
 
             /*if(!resultSet.next()){
                 System.out.println(ANSI_RED + "We did not find any matching book!" + ANSI_RESET);
@@ -187,33 +197,31 @@ public class SelectABookSK {
                     System.out.println(ANSI_GREEN + String.format(output, Author, Region, Title, Pages, Published, OriginalYear, Genre) + ANSI_RESET);
                 }
             }*/
-            System.out.println("Please find following books matching your criteria:");
+                System.out.println("Please find following books matching your criteria:");
 
-            if(!resultSet.next()){
-                System.out.println(ANSI_RED + "We did not find any matching book!" + ANSI_RESET);
-            } else {
-                do {
-                    String Author = resultSet.getString(2);
-                    String Region = resultSet.getString(3);
-                    String Title = resultSet.getString(4);
-                    int Pages = resultSet.getInt(5);
-                    int Published = resultSet.getInt(6);
-                    int OriginalYear = resultSet.getInt(7);
-                    String Genre = resultSet.getString(8);
+                if (!resultSet.next()) {
+                    System.out.println(ANSI_RED + "We did not find any matching book!" + ANSI_RESET);
+                } else {
+                    do {
+                        String Author = resultSet.getString(2);
+                        String Region = resultSet.getString(3);
+                        String Title = resultSet.getString(4);
+                        int Pages = resultSet.getInt(5);
+                        int Published = resultSet.getInt(6);
+                        int OriginalYear = resultSet.getInt(7);
+                        String Genre = resultSet.getString(8);
 
 
-                    String output = "Author: %s, Region: %s, Title: %s, Pages: %d, Published: %d, Original Year: %d, Genre: %s";
-                    System.out.println(ANSI_GREEN + String.format(output, Author, Region, Title, Pages, Published, OriginalYear, Genre) + ANSI_RESET);
-                } while (resultSet.next());
+                        String output = "Author: %s, Region: %s, Title: %s, Pages: %d, Published: %d, Original Year: %d, Genre: %s";
+                        System.out.println(ANSI_GREEN + String.format(output, Author, Region, Title, Pages, Published, OriginalYear, Genre) + ANSI_RESET);
+                    } while (resultSet.next());
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-
-
-
-
-        }catch (Exception e) {
-            e.printStackTrace();
         }
     }
-}
+
 
