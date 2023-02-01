@@ -36,7 +36,7 @@ INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, G
 INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Heidi Mavir', 'Europe', 'Your Child Is Not Broken', '156', '2022', '2022', 'Parenting');
 INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Rob Kemp', 'Europe', 'The Expectant Dad\'s Survival Guide', '272', '2010', '2010', 'Parenting');
 INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Gordon Neufeld', 'North America', 'Hold on to Your Kids: Why Parents Need to Matter More', '352', '2006', '2006', 'Parenting');
-INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Suzy Giordano', 'North America', 'Twelve Hours\' Sleep bt Twelve Weeks Old', '160', '2006', '2006', 'Parenting');
+INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Suzy Giordano', 'North America', 'Twelve Hours\' Sleep by Twelve Weeks Old', '160', '2006', '2006', 'Parenting');
 INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Sally Shaywitz', 'North America', 'Overcoming Dyslexia', '414', '2020', '2005', 'Parenting');
 INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Eyal Ben-Ari', 'Asia', 'Japanese Childcare: An Interpretive Study of Culture and Organization', '250', '1997', '1997', 'Parenting');
 INSERT INTO finalbooks (Author, Region, Title, Pages, Published, OriginalYear, Genre) VALUES ('Greta Thunberg', 'Europe', 'The Climate Book: Greta Thunberg', '464', '2022', '2022', 'Politics');
