@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,13 +15,16 @@ public class Main_SK {
 
         boolean quit = false;
         int input = 0;
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_GREEN = "\u001B[32m";
 
         String dbURL = "jdbc:mysql://localhost:3306/java34";
         String username = "root";
         String password = "vilmas12";
 
         try (Connection conn = DriverManager.getConnection(dbURL, username, password)) {
-            printInstructions_LT.printInstructions();
+            System.out.println(ANSI_GREEN +"Welcome to your Library/Book Finder!" +ANSI_RESET);
 
             while (!quit) {
                 printInstructions_LT.printInstructions();
@@ -35,19 +39,14 @@ public class Main_SK {
                             readData_LT.readData(conn);
                             break;
                         case 2:
-                            System.out.println("Test 2");
                             AddBookClassSK.addBook(conn);
                             // Add a book
                             break;
                         case 3:
-                            System.out.println("Test 3");
                             SelectABookSK.selectBook(conn);
                             // Select by criteria
                             break;
                         case 4:
-                            printInstructions_LT.printInstructions();
-                            break;
-                        case 5:
                             quit = true;
                             break;
                         default:
@@ -55,7 +54,7 @@ public class Main_SK {
                             break;
                     }
                 } catch (InputMismatchException e) {
-                    System.err.println("Wrong input! Integers only!");
+                    System.err.println("Wrong input! Please use only numbers!");
                     scanner.nextLine();
                 }
 

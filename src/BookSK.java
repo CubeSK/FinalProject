@@ -66,7 +66,7 @@ public class BookSK {
         Scanner scanner = new Scanner(System.in);
         int origYear;
         while (true) {
-            System.out.println("Please enter books publishing year:");
+            System.out.println("Please enter books original year of publishing: ");
             origYear = scanner.nextInt();
             if (isValidYear(origYear)) {
                 System.out.println("Year accepted" );
