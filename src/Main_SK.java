@@ -17,7 +17,7 @@ public class Main_SK {
 
         String dbURL = "jdbc:mysql://localhost:3306/java34";
         String username = "root";
-        String password = "vilmas12";
+        String password = "psw";
 
         try (Connection conn = DriverManager.getConnection(dbURL, username, password)) {
             printInstructions_LT.printInstructions();
