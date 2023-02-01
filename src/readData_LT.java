@@ -21,32 +21,32 @@ public class readData_LT {
 
                     do {
                         System.out.println("Choose book genre you want to see? \n" +
-                                "H - history, R - romance, PAR - parenting, POL - politics, HOB - hobbies, EXIT - stop listing books by genre");
-                        String genreAnswer = scanner.nextLine().trim().toUpperCase().strip();
+                                "1 - history, 2 - romance, 3 - parenting, 4 - politics, 5 - hobbies, 6 - stop listing books by genre");
+                        int genreAnswer = scanner.nextInt();
 
                     switch (genreAnswer) {
 
-                        case "H":
+                        case 1:
                             System.out.println("List of History books:  ");
                             select_Genre_LT.selectGenreH(conn);
                             break;
-                        case "R":
+                        case 2:
                             System.out.println("List of Romance books: ");
                             select_Genre_LT.selectGenreR(conn);
                             break;
-                        case "PAR":
+                        case 3:
                             System.out.println("List of Parenting books: ");
                             select_Genre_LT.selectGenrePAR(conn);
                             break;
-                        case "POL":
+                        case 4:
                             System.out.println("List of Politics books: ");
                             select_Genre_LT.selectGenrePOL(conn);
                             break;
-                        case "HOB":
+                        case 5:
                             System.out.println("List of Hobbies books: ");
                             select_Genre_LT.selectGenreHOB(conn);
                             break;
-                        case "EXIT":
+                        case 6:
                             quit = true;
                             System.out.println();
                             printInstructions_LT.printInstructions();
