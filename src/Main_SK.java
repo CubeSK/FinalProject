@@ -34,6 +34,7 @@ public class Main_SK {
                     scanner.nextLine();
 
                     switch (input) {
+
                         case 1:
                             // See all the books
                             readData_LT.readData(conn);
@@ -64,5 +65,4 @@ public class Main_SK {
     }
 
 }
-
 

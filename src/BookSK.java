@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.regex.Pattern;
 import java.util.Scanner;
 
@@ -37,12 +38,17 @@ public class BookSK {
         int pageCount = 0;
         while (true) {
             System.out.println("Enter number of pages in the book (numbers only)!");
-            pageCount = scanner.nextInt();
-            if (isNumberOfPagesCorrect(pageCount)) {
-                System.out.println("Number of pages accepted");
-                break;
-            } else {
-                System.out.println("The provided number is incorrect.");
+            try {
+                pageCount = scanner.nextInt();
+                if (isNumberOfPagesCorrect(pageCount)) {
+                    System.out.println("Number of pages accepted");
+                    break;
+                } else {
+                    System.out.println("The provided number is incorrect.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number.");
+                scanner.nextLine();
             }
         }
         return pageCount;
@@ -92,12 +98,8 @@ public class BookSK {
 
 
 
-
-
-
-
     public static boolean checkIfValid (String name){
-        return Pattern.matches("^[a-zA-Z ]+$", name);
+        return Pattern.matches("^[a-zA-Z ]*[a-zA-Z][a-zA-Z ]*$", name);
 
     }
     public static boolean isValidYear(int year) {

@@ -8,18 +8,9 @@ public class AddBookClassSK {
 
 
     public static void addBook(Connection conn) throws SQLException {
-        String dbURL = "jdbc:mysql://localhost:3306/java34";
-        String user = "root";
-        String password = "vilmas12";
-        Scanner scanner = new Scanner(System.in);
 
+            Scanner scanner = new Scanner(System.in);
 
-        /*try (Connection conn = DriverManager.getConnection(dbURL, user, password)) {
-
-            System.out.println("Connected to database");*/
-
-
-            // this will happen after in main choosing "Add a new book"
 
             BookSK book1 = new BookSK();
 
@@ -55,7 +46,7 @@ public class AddBookClassSK {
                 System.out.println("Enter the category of book");
                 genre = scanner.nextLine();
 
-                isValid = book1.setGenre (author);
+                isValid = book1.setGenre (genre);
 
             } while (!isValid);
 
@@ -64,14 +55,10 @@ public class AddBookClassSK {
 
 
 
-        /*}catch(Exception e){
-            e.printStackTrace();
-        }*/
 
     }
-
     public static void insertData (Connection conn, String author, String region, String title,
-            int pageNumber, int yearPublished, int originalYear, String genre ) throws SQLException {
+                                   int pageNumber, int yearPublished, int originalYear, String genre ) throws SQLException {
 
         String checkIfExistsSQL = "SELECT * FROM Finalbooks WHERE Title = ?";
         PreparedStatement checkIfExistsStatement = conn.prepareStatement(checkIfExistsSQL);
@@ -106,10 +93,7 @@ public class AddBookClassSK {
 
 
 
-            }
-
-
-
+    }
 
 
 
