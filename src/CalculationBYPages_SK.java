@@ -7,7 +7,7 @@ public class CalculationBYPages_SK {
 
         String dbURL = "jdbc:mysql://localhost:3306/java34";
         String user = "root";
-        String password = "psw";
+        String password = "vilmas12";
         Scanner scanner = new Scanner(System.in);
 
 

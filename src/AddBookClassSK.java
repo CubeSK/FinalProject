@@ -10,16 +10,16 @@ import java.time.LocalDate;
 public class AddBookClassSK {
 
 
-    public static void main(String[] args) {
+    public static void addBook(Connection conn) throws SQLException {
         String dbURL = "jdbc:mysql://localhost:3306/java34";
         String user = "root";
         String password = "vilmas12";
         Scanner scanner = new Scanner(System.in);
 
 
-        try (Connection conn = DriverManager.getConnection(dbURL, user, password)) {
+        /*try (Connection conn = DriverManager.getConnection(dbURL, user, password)) {
 
-            System.out.println("Connected to database");
+            System.out.println("Connected to database");*/
 
 
             // this will happen after in main choosing "Add a new book"
@@ -67,9 +67,9 @@ public class AddBookClassSK {
 
 
 
-        }catch(Exception e){
+        /*}catch(Exception e){
             e.printStackTrace();
-        }
+        }*/
 
     }
 

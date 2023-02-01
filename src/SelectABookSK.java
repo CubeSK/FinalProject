@@ -1,24 +1,17 @@
 import java.sql.*;
 import java.util.Scanner;
-
-public class SelectABookLH {
-    static String dbURL = "jdbc:mysql://localhost:3306/java34";
-    static String user = "root";
-    static String password = "vilmas12";
+import java.util.Random;
 
 
-    public static void main(String[] args) throws SQLException {
+public class SelectABookSK {
+
+
+    public static void selectBook(Connection conn) throws SQLException {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_GREEN = "\u001B[32m";
 
 
-        Connection conn = DriverManager.getConnection(dbURL, user, password);
-        //selectgenrefilter(conn);
-        //selectregionfilter(conn);
-        //selectpagefilter(conn);
-        //selectyearfilter(conn);
-        //selectoriginalyear(conn);
 
         //public static void selectgenrefilter(Connection conn) throws SQLException {
         System.out.println("What genre would you like to read? Please choose from the following: " +
@@ -79,27 +72,18 @@ public class SelectABookLH {
             //regionfilter = "Europe" + "Asia" + "North America" + "South America";
         }
 
-        //public void selectpagefilter (Connection conn) throws SQLException {
-        //replaced by pagecalculator method
 
-        /*System.out.println("How many pages should the book have? Please choose from the following: " +
-                "\n 1 Up to 200" +
-                "\n 2 More than 200" +
-                "\n 3 Not important");
-        int choice2 = scanner.nextInt();
-        int pageMin = 0, pageMax = 0;
-        if (choice2 == 1) {
-            pageMin = 50;
-            pageMax = 200;
-        } else if (choice2 == 2) {
-            pageMin = 201;
-            pageMax = 1000;
-        } else if (choice2 == 3) {
-            pageMin = 50;
-            pageMax = 1000;
-        } else {
-            System.out.println("Please enter number from 1 to 3!");
-*/
+        System.out.println("How many pages a day do you want to read?");
+        int pagesWant = scanner.nextInt();
+
+        System.out.println("Max number of days you would like to finish reading a book?");
+        int maxNumber = scanner.nextInt();
+
+        int pagesToSearch = maxNumber * pagesWant;
+
+
+
+
         //public void selectyearfilter (Connection conn) throws SQLException {
         System.out.println("When should the book be published? Please choose from the following: " +
                 "\n 1 Before 1980" +
@@ -110,11 +94,9 @@ public class SelectABookLH {
         Scanner scanner2 = new Scanner(System.in);
         int choice3 = scanner.nextInt();
         int yearmin = 0, yearmax = 0;
-        while (choice3 < 1 || choice3 > 5) {
-            choice3 = scanner.nextInt();
-            if (choice3 < 1 || choice3 > 5) {
-                System.out.println(ANSI_RED + "You did not enter a number from 1 to 5. Please try again: " + ANSI_RESET);
-            }
+        while (choice3 < 1 || choice3 > 6) {
+            System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
+            choice3 = scanner2.nextInt();
         }
         if (choice3 == 2) {
             yearmin = 1980;
@@ -145,11 +127,15 @@ public class SelectABookLH {
         Scanner scanner3 = new Scanner(System.in);
         int origyearmin = 0, origyearmax = 0;
         int choice4 = scanner.nextInt();
-        while (choice4 < 1 || choice4 > 6) {
+        /*while (choice4 < 1 || choice4 > 6) {
             choice4 = scanner.nextInt();
             if (choice4 < 1 || choice4 > 6) {
                 System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
             }
+        }*/
+        while (choice4 < 1 || choice4 > 6) {
+            System.out.println(ANSI_RED + "You did not enter a number from 1 to 6. Please try again: " + ANSI_RESET);
+            choice4 = scanner3.nextInt();
         }
         if (choice4 == 2) {
             origyearmin = 1700;
@@ -172,19 +158,19 @@ public class SelectABookLH {
         }
 
         try {
-            String sql = "SELECT * FROM finalbooks WHERE Genre = ? AND Region = ? AND Published BETWEEN ? AND ? AND OriginalYear BETWEEN ? AND ?";
+            String sql = "SELECT * FROM finalbooks WHERE Genre = ? AND Region = ? AND Published BETWEEN ? AND ? AND OriginalYear BETWEEN ? AND ? AND PAGES BETWEEN 0 and ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, genrefilter);
             preparedStatement.setString(2, regionfilter);
-            //preparedStatement.setInt(3, pageMin);
-            //preparedStatement.setInt(4, pageMax);
             preparedStatement.setInt(3, yearmin);
             preparedStatement.setInt(4, yearmax);
             preparedStatement.setInt(5, origyearmin);
             preparedStatement.setInt(6, origyearmax);
+            preparedStatement.setInt(7, pagesToSearch);
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(!resultSet.next()){
+            /*if(!resultSet.next()){
                 System.out.println(ANSI_RED + "We did not find any matching book!" + ANSI_RESET);
             } else {
                 while (resultSet.next()) {
@@ -200,7 +186,30 @@ public class SelectABookLH {
                     String output = "Author: %s, Region: %s, Title: %s, Pages: %d, Published: %d, Original Year: %d, Genre: %s";
                     System.out.println(ANSI_GREEN + String.format(output, Author, Region, Title, Pages, Published, OriginalYear, Genre) + ANSI_RESET);
                 }
+            }*/
+            System.out.println("Please find following books matching your criteria:");
+
+            if(!resultSet.next()){
+                System.out.println(ANSI_RED + "We did not find any matching book!" + ANSI_RESET);
+            } else {
+                do {
+                    String Author = resultSet.getString(2);
+                    String Region = resultSet.getString(3);
+                    String Title = resultSet.getString(4);
+                    int Pages = resultSet.getInt(5);
+                    int Published = resultSet.getInt(6);
+                    int OriginalYear = resultSet.getInt(7);
+                    String Genre = resultSet.getString(8);
+
+
+                    String output = "Author: %s, Region: %s, Title: %s, Pages: %d, Published: %d, Original Year: %d, Genre: %s";
+                    System.out.println(ANSI_GREEN + String.format(output, Author, Region, Title, Pages, Published, OriginalYear, Genre) + ANSI_RESET);
+                } while (resultSet.next());
             }
+
+
+
+
 
         }catch (Exception e) {
             e.printStackTrace();
