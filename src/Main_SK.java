@@ -21,7 +21,7 @@ public class Main_SK {
 
         String dbURL = "jdbc:mysql://localhost:3306/java34";
         String username = "root";
-        String password = "vilmas12";
+        String password = "Jautajumsnr6663";
 
         try (Connection conn = DriverManager.getConnection(dbURL, username, password)) {
             System.out.println(ANSI_GREEN +"Welcome to your Library/Book Finder!" +ANSI_RESET);
