@@ -49,7 +49,6 @@ public class readData_LT {
                     case 6:
                         quit = true;
                         System.out.println();
-                        printInstructions_LT.printInstructions();
                         break;
                     default:
                         System.out.println("Please enter correct genre!");
@@ -86,7 +85,7 @@ public class readData_LT {
         } else {
             System.out.println("Please answer y (yes) or n (no)! ");
             System.out.println();
-            printInstructions_LT.printInstructions();
+
         }
     }
 }

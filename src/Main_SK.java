@@ -21,7 +21,7 @@ public class Main_SK {
 
         String dbURL = "jdbc:mysql://localhost:3306/java34";
         String username = "root";
-        String password = "Jautajumsnr6663";
+        String password = "vilmas12";
 
         try (Connection conn = DriverManager.getConnection(dbURL, username, password)) {
             System.out.println(ANSI_GREEN +"Welcome to your Library/Book Finder!" +ANSI_RESET);
@@ -51,7 +51,7 @@ public class Main_SK {
                             quit = true;
                             break;
                         default:
-                            System.out.println("Your input is not valid!");
+                            System.out.println(ANSI_RED +"Your input is not valid!"+ANSI_RESET);
                             break;
                     }
                 } catch (InputMismatchException e) {
