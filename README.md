@@ -28,4 +28,11 @@ Genre: The genre of the book
 
 
 The code is written in Java, total amount of lines and files is x and x respectively.
-In order to create the database structure in MySQLWorkbench, the user first needs to run the JavaFInal2.sql queries in order to create a table as according to the database structure overview and to have the initial library of the books. 
+In order to create the database structure in MySQLWorkbench, the user first needs to run the JavaFInal2.sql queries and make a new project in his/her MySQLWorkbench. Then copy/paste all the lines from JavaFinal2 into your local project and run them.
+Connection to SQL when you run Book Finder from your machine:
+String dbURL = "jdbc:mysql://localhost:3306/YOURSQLPROJECTNAME";
+String username = "root";
+String password = "YOURSQLPASSWORD";
+try (Connection conn = DriverManager.getConnection(dbURL, YOURUSERNAME, YOURSQLPASSWORD))
+
+You are ready to run Book Finder!
