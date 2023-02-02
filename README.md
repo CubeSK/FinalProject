@@ -18,12 +18,19 @@ Database structure overview:
 
 Explanation of the columns used:
 Book ID: the ID from 1 onwards, the primary key in the database
+
 Author: The name and surname of the author
+
 Region: The region from which the author is
+
 Title: The full title of the book
+
 Pages: Number of pages in the book
+
 Published: Year that the book was published
+
 OriginalYear: Original year when the book was first published
+
 Genre: The genre of the book
 
 
